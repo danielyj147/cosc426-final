@@ -1,0 +1,7 @@
+[project]
+name = "cosc426-final"
+version = "0.0.1"
+description = "2025 Fall cosc426 Final Project"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
