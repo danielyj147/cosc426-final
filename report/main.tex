@@ -1,0 +1,201 @@
+% This must be in the first 5 lines to tell arXiv to use pdfLaTeX, which is strongly recommended.
+\pdfoutput=1
+% In particular, the hyperref package requires pdfLaTeX in order to break URLs across lines.
+
+\documentclass[11pt]{article}
+
+% Remove the "review" option to generate the final version.
+\usepackage[review]{ACL2023}
+%\usepackage[]{ACL2023}
+
+% Standard package includes
+\usepackage{times}
+\usepackage{latexsym}
+
+% For proper rendering and hyphenation of words containing Latin characters (including in bib files)
+\usepackage[T1]{fontenc}
+% For Vietnamese characters
+% \usepackage[T5]{fontenc}
+% See https://www.latex-project.org/help/documentation/encguide.pdf for other character sets
+
+% This assumes your files are encoded as UTF8
+\usepackage[utf8]{inputenc}
+
+% This is not strictly necessary, and may be commented out.
+% However, it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+% This is also not strictly necessary, and may be commented out.
+% However, it will improve the aesthetics of text in
+% the typewriter font.
+\usepackage{inconsolata}
+
+
+% If the title and author information does not fit in the area allocated, uncomment the following
+%
+%\setlength\titlebox{<dim>}
+%
+% and set <dim> to something 5cm or larger.
+
+\title{Paper Title: A title of a paper}
+
+% Author information can be set in various styles:
+% For several authors from the same institution:
+% \author{Author 1 \and ... \and Author n \\
+%         Address line \\ ... \\ Address line}
+% if the names do not fit well on one line use
+%         Author 1 \\ {\bf Author 2} \\ ... \\ {\bf Author n} \\
+% For authors from different institutions:
+% \author{Author 1 \\ Address line \\  ... \\ Address line
+%         \And  ... \And
+%         Author n \\ Address line \\ ... \\ Address line}
+% To start a seperate ``row'' of authors use \AND, as in
+% \author{Author 1 \\ Address line \\  ... \\ Address line
+%         \AND
+%         Author 2 \\ Address line \\ ... \\ Address line \And
+%         Author 3 \\ Address line \\ ... \\ Address line}
+
+% \author{First Author \\
+%   Affiliation / Address line 1 \\
+%   Affiliation / Address line 2 \\
+%   Affiliation / Address line 3 \\
+%   \texttt{email@domain} 
+%   }
+\usepackage[svgnames]{xcolor}   
+\newcommand{\advice}[1]{\textcolor{MediumPurple}{[#1]}}
+
+\begin{document}
+\maketitle
+% \begin{abstract}
+% The abstract should be very short (Approximately 5 sentences. No more than 10 sentences). It should describe briefly the main question, the method used, the main takeaway results and implications of these results. 
+% \end{abstract}
+
+\section{Introduction}
+The goal of the introduction is to give a bird's eye view of the paper. It should include the following details (with advice on how to approach this in purple):
+
+\begin{itemize}
+    \item What was the big picture question that the paper you are trying to replicate was trying to answer? Why is this question interesting and/or what gap in our knowledge is this trying to fill? \advice{Make sure to paraphrase this in a way that make sense to you; do not just copy paste from the paper.}
+
+    \item How does the original paper approach answering the question? What methods does it use? Why are these methods a useful way of approaching the question? \advice{It might help to identify for yourself here what are the dependent and independent variables in the experiment (i.e., what is being measured vs. what is being manipulated) and how these variables map onto concepts from the question.}
+
+    \item What was the main conclusion of the original paper? \advice{Your goal here is to identify what was your key takeaway and describe that, instead of just verbatim repeating all of the results from the paper}
+
+    \item Which parts of the paper did you replicate and why? \advice{All the papers have many experiments and/or analyses, describe which ones you found most interesting. Your choice is ideally going to be related to what you thought the main takeaway was.}
+
+    \item What did you find and what can you conclude?
+\end{itemize}
+
+\noindent\advice{\textbf{Even though the introduction is the first part of the paper, it can be helpful to start with a very rough draft or bulleted list of the points you want to include, and then write it after you've written the other sections.}}
+
+
+
+\section{Background}
+In this paper the background is a way of introducing concepts, methods or work that is important for the reader to know in order to understand the specific methods you use or analyses you run. Some things to think about:
+
+\begin{itemize}
+    \item Are there assumptions or linking hypotheses that the original paper was making that were not obvious? What are they? What were they based on?
+    \item Are the methods that the original paper was using building on some other method or some commonly understood/accepted arguments in the field?
+\end{itemize}
+
+\advice{This background section serves a different purpose than the background in the original paper. Do not just copy or lightly paraphrase the background from that paper. Instead synthesize what you think is most important for the reader to know. It might help for you to think about what parts of the paper were unclear to you when you first read it, and what kind of additional information helped make those aspects clearer.}
+
+
+\section{Methods}
+Start this section by giving a bird's eye view of the overall approach, and then describe each of the components in detail.
+
+\subsection{Models}
+Describe what model or models you used to replicate the experiment. If you are using a different model from the original paper or only a subset of the models, justify your choice.
+
+\subsection{Datasets}
+Describe what datasets you used and how you generated them. In your description you should both explain the logic of the dataset construction, and outline specific implementational choices you made. Ideally you will also include a github link to the code that generates the dataset. As with the model, if you are making choices the diverge from the original paper, justify the choices \advice{If your paper involves training and evaluating models, then describe both of these datasets separately and consider having the be different subsections.}
+
+
+\subsection{Evaluation}
+Describe what approach you used to analyze the output from the model. Make sure to explain why this analysis method is appropriate to answer the question this paper is studying.
+
+\section{Results}
+
+\paragraph{Some insight}
+Describe one insight. What parts of your results help you draw this conclusion? Point to a figure or a table.
+
+%% Here is an example of table you can use
+\begin{table}
+    \centering
+    \begin{tabular}{lc}
+        \hline
+        \textbf{Command} & \textbf{Output} \\
+        \hline
+        \verb|{\"a}|     & {\"a}           \\
+        \verb|{\^e}|     & {\^e}           \\
+        \verb|{\`i}|     & {\`i}           \\
+        \verb|{\.I}|     & {\.I}           \\
+        \verb|{\o}|      & {\o}            \\
+        \verb|{\'u}|     & {\'u}           \\
+        \verb|{\aa}|     & {\aa}           \\\hline
+    \end{tabular}
+    \begin{tabular}{lc}
+        \hline
+        \textbf{Command} & \textbf{Output} \\
+        \hline
+        \verb|{\c c}|    & {\c c}          \\
+        \verb|{\u g}|    & {\u g}          \\
+        \verb|{\l}|      & {\l}            \\
+        \verb|{\~n}|     & {\~n}           \\
+        \verb|{\H o}|    & {\H o}          \\
+        \verb|{\v r}|    & {\v r}          \\
+        \verb|{\ss}|     & {\ss}           \\
+        \hline
+    \end{tabular}
+    \caption{Example commands for accented characters, to be used in, \emph{e.g.}, Bib\TeX{} entries.}
+    \label{tab:accents}
+\end{table}
+\begin{table*}
+    \centering
+    \begin{tabular}{lll}
+        \hline
+        \textbf{Output}        & \textbf{natbib command} & \textbf{Old ACL-style command} \\
+        \hline
+        \citep{ct1965}         & \verb|\citep|           & \verb|\cite|                   \\
+        \citealp{ct1965}       & \verb|\citealp|         & no equivalent                  \\
+        \citet{ct1965}         & \verb|\citet|           & \verb|\newcite|                \\
+        \citeyearpar{ct1965}   & \verb|\citeyearpar|     & \verb|\shortcite|              \\
+        \citeposs{ct1965}      & \verb|\citeposs|        & no equivalent                  \\
+        \citep[FFT;][]{ct1965} & \verb|\citep[FFT;][]|   & no equivalent                  \\
+        \hline
+    \end{tabular}
+    \caption{\label{citation-guide}
+        Citation commands supported by the style file.
+        The style is based on the natbib package and supports all natbib citation commands.
+        It also supports commands defined in previous ACL style files for compatibility.
+    }
+\end{table*}
+
+\paragraph{Some other insight}
+Describe another insight. What parts of your results help you draw this conclusion? Point to a figure or a table.
+
+\paragraph{Maybe another insight}
+Describe another insight. What parts of your results help you draw this conclusion? Point to a figure or a table.
+
+\advice{Your results section should include descriptions of all the results that relevant for the parts of the paper you said you would replicate in the introduction. For each result, you should compare it to the results from the original paper.}
+
+\section{Discussion}
+The discussion section is a way of synthesizing the main points of the paper. It should include:
+\begin{itemize}
+    \item A brief summary of the main question and motivation
+    \item A brief summary of the results and how it relates to the results of the original paper and to the main question.
+    \item A discussion of limitations (both of the original study and of your replication).
+    \item Conclusion summarizing the main takeaway
+\end{itemize}
+
+
+
+% \section*{Acknowledgements}
+
+% Add acknowledgements here. The stylistic parts of this template were taken from ACL 2023 Latex template. 
+
+\bibliography{custom}
+\bibliographystyle{acl_natbib}
+
+
+\end{document}
