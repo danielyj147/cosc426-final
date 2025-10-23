@@ -30,6 +30,26 @@
 
     1. For compiling LaTeX: [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
 
+## Project Structure
+
+```text
+.
+├── README.md
+├── assets # images & figures
+├── configs # NLPScholar configs
+├── data
+├── notebooks
+│   └── main.ipynb
+├── pyproject.toml
+├── report # paper
+│   ├── acl2023.sty
+│   ├── acl_natbib.bst
+│   ├── custom.bib
+│   ├── main.pdf
+│   └── main.tex
+└── uv.lock
+```
+
 ## Contributors
 
 ## Citations
