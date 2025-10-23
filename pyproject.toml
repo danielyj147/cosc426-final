@@ -4,4 +4,9 @@ version = "0.0.1"
 description = "2025 Fall cosc426 Final Project"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "ipykernel>=7.0.1",
+    "matplotlib>=3.10.7",
+    "numpy>=2.3.4",
+    "pandas>=2.3.3",
+]
