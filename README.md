@@ -10,7 +10,7 @@
    2. Datasets
       * [Interactive Data Analyzer — United States Sentencing Commission](https://www.ussc.gov/research/interactive-data-analyzer)
       * [Commission Datafiles — USSC (Criminal History of Sentenced Individuals)](https://www.ussc.gov/research/datafiles/commission-datafiles)
-      * [“Sentencing” tagged datasets — Bureau of Justice Statistics / Data.gov](https://catalog.data.gov/dataset/?tags=sentencing)
+      * [“Sentencing” tagged datasets — Bureau of Justice Statistics / Data.gov](https://opendata.dc.gov/api/download/v1/items/f92f4556f26b4737a040fb996eaefca3/csv?layers=40)
       * [Data Collections Search — BJS](https://bjs.ojp.gov/data-collections/search)
       * [National Corrections Reporting Program (NCRP) — BJS](https://bjs.ojp.gov/data-collection/national-corrections-reporting-program-ncrp)
       * [Monitoring of Federal Criminal Sentences Series — Inter‑university Consortium for Political and Social Research (ICPSR)](https://www.icpsr.umich.edu/web/ICPSR/series/83)
