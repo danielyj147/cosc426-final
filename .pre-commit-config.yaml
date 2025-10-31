@@ -1,0 +1,43 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.3
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-toml
+      - id: mixed-line-ending
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  # run Ruff on notebooks via nbQA
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.9.1
+    hooks:
+      - id: nbqa-ruff
+        additional_dependencies: [ruff==0.6.0]
+        files: \.ipynb$
+        args: ["--fix"]
+      - id: nbqa-ruff-format
+        additional_dependencies: [ruff==0.6.0]
+        files: \.ipynb$
+
+  # LaTeX: format & lint
+  # - repo: local
+  #   hooks:
+  #     - id: latexindent
+  #       name: latexindent (format *.tex)
+  #       entry: bash -lc 'latexindent -l -w "$@"'
+  #       language: system
+  #       files: \.tex$
+  #     - id: chktex
+  #       name: chktex (lint *.tex)
+  #       entry: bash -lc 'chktex -q -I0 -n22 -n30 "$@"'
+  #       language: system
+  #       pass_filenames: true
+  #       files: \.tex$

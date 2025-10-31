@@ -11,3 +11,44 @@ dependencies = [
     "pandas>=2.3.3",
     "seaborn>=0.13.2",
 ]
+
+[tool.ruff]
+line-length = 80
+target-version = "py312"
+src = ["src", "."]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+docstring-code-line-length = 80
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "N", "D"]
+ignore = [
+  "D203",  # one-blank-line-before-class
+  "D212"   # summary not on first line
+]
+unfixable = ["F401"]
+preview = false
+
+[tool.ruff.lint.isort]
+# known-first-party = ["yourpkg"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = ["F401"]    # allow re-export convenience
+"tests/**" = ["D"]             # don't require docstrings in tests
+
+[tool.nbqa]
+addopts = ["--nbqa-mutate"]
+
+[tool.nbqa.config]
+ruff = ["--line-length=80"]
+"ruff-format" = []
+
+[dependency-groups]
+dev = [
+    "nbqa>=1.9.1",
+    "pre-commit>=4.3.0",
+    "ruff>=0.14.3",
+]
