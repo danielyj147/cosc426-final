@@ -553,3 +553,6 @@ predictions/*
 results/*
 
 !**/.gitkeep
+
+# sample data
+!data/sample.tsv
