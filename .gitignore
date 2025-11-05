@@ -547,6 +547,7 @@ TSWLatexianTemp*
 
 # Data
 data/*
+!data/offense.csv
 
 # Generated Data
 predictions/*

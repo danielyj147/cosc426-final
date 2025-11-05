@@ -89,14 +89,17 @@ If you prefer to do it manually, follow the steps below:
 
 We are using all the unique offesnses from the dataset.
 
+* Base Sentence Structure:
+  > The person is `variable`. The person committed `offense(at data/offense.csv)`. This person should serve a sentence of `0 / 1 / 5 / 10` years.
+
 1. Data Generation (11/9)
-    * [x] Race Data Generation(Leo)
-    * [ ] Gender Data Generation(Ernest)
-    * [ ] Age Group Data Generation(Dan)
+    * [ ] Race (Leo)
+    * [ ] Gender (Ernest)
+    * [ ] Age Group (Dan)
 2. NLP Scholar Config (11/9)
-    * [ ] Race Data Generation(Leo)
-    * [ ] Gender Data Generation(Ernest)
-    * [ ] Age Group Data Generation(Dan)
+    * [ ] Race (Leo)
+    * [ ] Gender (Ernest)
+    * [ ] Age Group (Dan)
 3. Generate Predictions and Results (11/9)
     * [ ] Race (Leo)
     * [ ] Gender (Ernest)
