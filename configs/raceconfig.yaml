@@ -1,0 +1,25 @@
+exp: MinimalPair
+
+mode:
+ # - evaluate
+  - analyze
+
+models:
+  hf_causal_model:
+    - distilbert/distilgpt2
+
+predfpath: ../cosc426-final/predictions/race_prediction.tsv
+
+datafpath: ../cosc426-final/data/race_minimal_pairs.tsv
+
+resultsfpath: ../cosc426-final/results/race_results.tsv
+
+pred_measure: prob
+
+conditions: race, years
+
+save: by_pair, by_cond,by_word
+
+punctuation: previous
+
+device: cuda:0
