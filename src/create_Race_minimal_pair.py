@@ -11,15 +11,11 @@ def gender_word(g: str) -> str:
 
 def build_sentence(
     race: str,
-    gender: str,
-    age: str,
     offense: str,
-    severity: str,
     months_for_sentence: float,
 ) -> str:
     return (
-        f"The person is a {race.lower()} {gender} aged {age}, convicted of {offense}, "
-        f"severity {severity}. The person should serve {int(months_for_sentence)} years."
+        f"The person is {race.lower()}. The person commited {offense}. The person should serve a sentence of {int(months_for_sentence)} years."
     )
 
 def create_race_minimal_pairs(df: pd.DataFrame, output_path: str = "../data/race_minimal_pairs.tsv"):
@@ -45,8 +41,8 @@ def create_race_minimal_pairs(df: pd.DataFrame, output_path: str = "../data/race
 
             # First iteration test White vs Black (White expected Black unexpected)
 
-            expected_sentence1 = build_sentence("White", gender, age, offense, severity, expected_year)
-            unexpected_sentence1 = build_sentence("Black", gender, age, offense, severity, expected_year)
+            expected_sentence1 = build_sentence("White", offense, expected_year)
+            unexpected_sentence1 = build_sentence("Black", offense, expected_year)
 
             # Two rows per pairid: unexpected then expected
             for comparison, sentence in (
@@ -59,8 +55,9 @@ def create_race_minimal_pairs(df: pd.DataFrame, output_path: str = "../data/race
                         "pairid": pairid_counter,
                         "comparison": comparison,
                         "sentence": sentence,
-                        "race": sentence.split()[4],
-                        "years": expected_years[i]
+                        "race": "White vs Black",
+                        "years": expected_years[i],
+                        "ROI": len(sentence.split())-2
                     }
                 )
                 sentid_counter += 1
@@ -69,8 +66,8 @@ def create_race_minimal_pairs(df: pd.DataFrame, output_path: str = "../data/race
             
             # Second iteration test White vs Hispanic (White expected Hispanic unexpected)
 
-            expected_sentence2 = build_sentence("White", gender, age, offense, severity, expected_year)
-            unexpected_sentence2 = build_sentence("Hispanic", gender, age, offense, severity, expected_year)
+            expected_sentence2 = build_sentence("White", offense, expected_year)
+            unexpected_sentence2 = build_sentence("Hispanic", offense, expected_year)
 
             for comparison, sentence in (
                 ("expected", expected_sentence2),
@@ -83,8 +80,10 @@ def create_race_minimal_pairs(df: pd.DataFrame, output_path: str = "../data/race
                         "pairid": pairid_counter,
                         "comparison": comparison,
                         "sentence": sentence,
-                        "race": sentence.split()[4],
-                        "years": expected_years[i]
+                        "race": "White vs Hispanic",
+                        "years": expected_years[i],
+                        "ROI": len(sentence.split())-2
+
                     }
                 )
                 sentid_counter += 1
@@ -95,8 +94,8 @@ def create_race_minimal_pairs(df: pd.DataFrame, output_path: str = "../data/race
 
             # Third iteration test Black vs Hispanic (Black expected Hispanic unexpected)
 
-            expected_sentence3 = build_sentence("Black", gender, age, offense, severity, expected_year)
-            unexpected_sentence3 = build_sentence("Hispanic", gender, age, offense, severity, expected_year)
+            expected_sentence3 = build_sentence("Black", offense, expected_year)
+            unexpected_sentence3 = build_sentence("Hispanic", offense, expected_year)
 
         
             for comparison, sentence in (
@@ -110,8 +109,9 @@ def create_race_minimal_pairs(df: pd.DataFrame, output_path: str = "../data/race
                         "pairid": pairid_counter,
                         "comparison": comparison,
                         "sentence": sentence,
-                        "race": sentence.split()[4],
-                        "years": expected_years[i]
+                        "race": "Black vs Hispanic",
+                        "years": expected_years[i],
+                        "ROI": len(sentence.split())-2
                     }
                 )
                 sentid_counter += 1
@@ -131,7 +131,8 @@ def create_race_minimal_pairs(df: pd.DataFrame, output_path: str = "../data/race
         "comparison",
         "sentence",
         "race",
-        "years"
+        "years",
+        "ROI"
     ]
     out_df = pd.DataFrame.from_records(records, columns=out_cols)
 
