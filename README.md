@@ -65,6 +65,7 @@ If you prefer to do it manually, follow the steps below:
 ├── data
 │   └── sample.tsv
 ├── notebooks
+│   ├── agegroup.ipynb
 │   └── main.ipynb
 ├── predictions # eval mode output
 ├── pyproject.toml
@@ -83,3 +84,20 @@ If you prefer to do it manually, follow the steps below:
 ## Contributors
 
 ## Citations
+
+## TODO
+
+We are using all the unique offesnses from the dataset.
+
+1. Data Generation (11/9)
+    * [x] Race Data Generation(Leo)
+    * [ ] Gender Data Generation(Ernest)
+    * [ ] Age Group Data Generation(Dan)
+2. NLP Scholar Config (11/9)
+    * [ ] Race Data Generation(Leo)
+    * [ ] Gender Data Generation(Ernest)
+    * [ ] Age Group Data Generation(Dan)
+3. Generate Predictions and Results (11/9)
+    * [ ] Race (Leo)
+    * [ ] Gender (Ernest)
+    * [ ] Age Group (Dan)
