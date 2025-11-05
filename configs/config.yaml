@@ -26,3 +26,5 @@ pred_measure: prob
 conditions: race, gender, age, offense, severity
 
 save: by_pair, by_cond
+
+device: cuda:0
