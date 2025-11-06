@@ -1,0 +1,25 @@
+exp: MinimalPair
+
+mode:
+  - evaluate
+  - analyze
+
+models:
+  hf_causal_model:
+    - distilbert/distilgpt2
+
+datafpath: ../cosc426-final/data/gender_min_pairs.tsv
+
+predfpath: ../cosc426-final/predictions/gender_prediction.tsv
+
+resultsfpath: ../cosc426-final/results/gender_results.tsv
+
+pred_measure: prob
+
+conditions: gender, years
+
+save: by_pair by_cond, by_word
+
+punctuation: previous
+
+device: cuda
