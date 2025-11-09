@@ -59,25 +59,16 @@ If you prefer to do it manually, follow the steps below:
 ```text
 .
 ├── README.md
-├── assets # images & figures
-├── configs # NLPScholar configs
-│   └── config.yaml
+├── assets // images
+├── configs // NLPScholar Configs
 ├── data
-│   └── sample.tsv
-├── notebooks
-│   ├── agegroup.ipynb
-│   └── main.ipynb
-├── predictions # eval mode output
+│   └── offense.csv // Offenses used for minimalpairs generation
+├── notebooks // Jupyter Notebooks
+├── predictions // NLPScholar Predictions
 ├── pyproject.toml
-├── report
-│   ├── acl2023.sty
-│   ├── acl_natbib.bst
-│   ├── custom.bib
-│   ├── main.pdf
-│   └── main.tex
-├── results # analyze mode output
-├── src # python code
-│   └── create_minimal_pairs.py
+├── report // Final Paper
+├── results // NLPScholar Results
+├── src // Python Scripts
 └── uv.lock
 ```
 
@@ -86,11 +77,6 @@ If you prefer to do it manually, follow the steps below:
 ## Citations
 
 ## TODO
-
-We are using all the unique offesnses from the dataset.
-
-* Base Sentence Structure:
-  > The person is `variable`. The person committed `offense(at data/offense.csv)`. This person should serve a sentence of `0 / 1 / 5 / 10` years.
 
 1. Data Generation (11/9)
     * [ ] Race (Leo)
