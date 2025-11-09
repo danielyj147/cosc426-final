@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 
+# data/origin.tsv `AGE_GROUP` column's unique values
 AGE_GROUPS = ["22-30", "61-70", "31-40", "18-21", "41-50", "15-17", "51-60", "71+"]
 
 
