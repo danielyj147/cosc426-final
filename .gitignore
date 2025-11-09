@@ -550,8 +550,6 @@ data/*
 !data/offense.csv
 
 # Generated Data
-predictions/*
-results/*
 
 !**/.gitkeep
 
