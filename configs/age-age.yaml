@@ -1,0 +1,25 @@
+exp: MinimalPair
+
+mode:
+  - evaluate
+  - analyze
+
+models:
+  hf_causal_model:
+    - distilbert/distilgpt2
+
+predfpath: ../cosc426-final/predictions/age_prediction_age.tsv
+
+datafpath: ../cosc426-final/data/age_minimal_pairs_age.tsv
+
+resultsfpath: ../cosc426-final/results/age_results_age.tsv
+
+pred_measure: prob
+
+conditions: age_pair, years
+
+save: by_cond
+
+punctuation: previous
+
+device: cuda:0
