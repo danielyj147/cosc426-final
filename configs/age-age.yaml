@@ -22,4 +22,4 @@ save: by_cond
 
 punctuation: previous
 
-device: cuda:1
+device: cuda

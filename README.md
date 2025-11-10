@@ -54,6 +54,17 @@ If you prefer to do it manually, follow the steps below:
 2. Load the file into a DataFrame.
 3. Pass the DataFrame as input to the `create_minimal_pairs` function from `src/create_minimal_pairs.py`.
 
+## How to submit a job to Turing
+
+1. In Turing terminal, duplicate `.example.env` and rename it to `.env`
+2. Edit the variables.
+3. In submit.sh, edit .env path so that it matches your .env path.
+4. Run `submit.sh` using qsub
+
+    ```bash
+    qsub submit.sh
+    ```
+
 ## Project Structure
 
 ```text
