@@ -16,7 +16,7 @@
 3. Generate Predictions and Results (11/9)
     * [x] Race (Leo)
     * [ ] Gender (Ernest)
-    * [ ] Age Group (Dan)
+    * [x] Age Group (Dan)
 
 ## Project Ideas
 
@@ -115,6 +115,7 @@ This script tells PBS what resources you need and how to run your code.
 ├── pyproject.toml
 ├── report // Final Paper
 ├── results // NLPScholar Results
+├── scripts 
 ├── src // Python Scripts
 └── uv.lock
 ```
