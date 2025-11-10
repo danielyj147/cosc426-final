@@ -54,16 +54,43 @@ If you prefer to do it manually, follow the steps below:
 2. Load the file into a DataFrame.
 3. Pass the DataFrame as input to the `create_minimal_pairs` function from `src/create_minimal_pairs.py`.
 
-## How to submit a job to Turing
+## How to Submit a Job to Turing
 
-1. In Turing terminal, duplicate `.example.env` and rename it to `.env`
-2. Edit the variables.
-3. In submit.sh, edit .env path so that it matches your .env path.
-4. Run `submit.sh` using qsub
+Jobs on the **Turing** cluster are submitted through the **PBS scheduler** using a shell script such as `scripts/submit.sh`.
+This script tells PBS what resources you need and how to run your code.
 
-    ```bash
-    qsub submit.sh
-    ```
+### Steps to Submit
+
+1. On Turing, Navigate to your project directory:
+
+   ```bash
+   cd ~/<path_to_project>/cosc426-final/scripts
+   ```
+
+2. Edit the submission script and replace placeholders:
+
+   * `<colgate user id>` → your Colgate username (e.g., `djohn`)
+   * `<your_cname>` → same Colgate username
+   * `<your/NLPScholar/path>` → path to your NLPScholar environment, e.g. `/home/NLPScholar`
+   * `<your/config/path>` → path to your YAML config, e.g. `/home/project/configs/raceconfigrace.yaml`
+
+3. Submit the job
+
+   ```bash
+   qsub submit.sh
+   ```
+
+4. Check status
+
+   ```bash
+   qstat -u $USER
+   ```
+
+   You’ll see a list of active jobs and their states:
+
+   * `Q` = Queued (waiting for resources)
+   * `R` = Running
+   * `C` = Completed
 
 ## Project Structure
 
