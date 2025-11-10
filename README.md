@@ -86,12 +86,6 @@ This script tells PBS what resources you need and how to run your code.
    qstat -u $USER
    ```
 
-   You’ll see a list of active jobs and their states:
-
-   * `Q` = Queued (waiting for resources)
-   * `R` = Running
-   * `C` = Completed
-
 ## Project Structure
 
 ```text
