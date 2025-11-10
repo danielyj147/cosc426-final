@@ -3,6 +3,21 @@
 > "Always code as if the person maintaining your code will be a violent psychopath who knows where you live."
 > — John F. Woods, 1991
 
+## TODO
+
+1. Data Generation (11/9)
+    * [x] Race (Leo)
+    * [ ] Gender (Ernest)
+    * [x] Age Group (Dan)
+2. NLP Scholar Config (11/9)
+    * [x] Race (Leo)
+    * [ ] Gender (Ernest)
+    * [x] Age Group (Dan)
+3. Generate Predictions and Results (11/9)
+    * [x] Race (Leo)
+    * [ ] Gender (Ernest)
+    * [ ] Age Group (Dan)
+
 ## Project Ideas
 
 1. AI Judge: Can AI accurately deliver sentences without bias?
@@ -107,18 +122,3 @@ This script tells PBS what resources you need and how to run your code.
 ## Contributors
 
 ## Citations
-
-## TODO
-
-1. Data Generation (11/9)
-    * [ ] Race (Leo)
-    * [ ] Gender (Ernest)
-    * [ ] Age Group (Dan)
-2. NLP Scholar Config (11/9)
-    * [ ] Race (Leo)
-    * [ ] Gender (Ernest)
-    * [ ] Age Group (Dan)
-3. Generate Predictions and Results (11/9)
-    * [ ] Race (Leo)
-    * [ ] Gender (Ernest)
-    * [ ] Age Group (Dan)
