@@ -67,7 +67,7 @@ This script tells PBS what resources you need and how to run your code.
    cd ~/<path_to_project>/cosc426-final/scripts
    ```
 
-2. Edit the submission script and replace placeholders:
+2. Duplicate & Edit the submission script and replace placeholders:
 
    * `<colgate user id>` → your Colgate username (e.g., `djohn`)
    * `<your_cname>` → same Colgate username
