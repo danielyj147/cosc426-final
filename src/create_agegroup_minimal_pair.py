@@ -133,12 +133,15 @@ def create_age_minimal_pairs_year(
 
     temp = pd.read_csv(tsv_path)
     offense_list = temp["offense"]
+    type_list = temp["type"]
+    severity_list = temp["severity"]
 
     records = []
     sentid_counter = 0
     pairid_counter = 0
-
+    x=-1
     for offense in offense_list:
+        x+=1
         for expected_year in expected_years:
             for i, age_a in enumerate(AGE_GROUPS):
                 for age_b in AGE_GROUPS[i + 1 :]:
@@ -168,6 +171,8 @@ def create_age_minimal_pairs_year(
                                     "years": expected_year,
                                     "ROI": len(sentence.split()) - 1,
                                     "template_id": template_idx + 1,
+                                    "type": type_list[x],
+                                    "severity": severity_list[x],
                                 }
                             )
                             sentid_counter += 1
@@ -184,6 +189,8 @@ def create_age_minimal_pairs_year(
         "years",
         "ROI",
         "template_id",
+        "type",
+        "severity",
     ]
 
     out_df = pd.DataFrame.from_records(records, columns=out_cols)
