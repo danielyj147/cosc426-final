@@ -16,7 +16,7 @@ resultsfpath: ../cosc426-final/results/age_results_year.tsv
 
 pred_measure: prob
 
-conditions: age_pair, years
+conditions: age_pair, years, type, severity, template_id
 
 save: by_cond
 
