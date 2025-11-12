@@ -37,7 +37,7 @@ def create_gender_minimal_pairs_year(
     Creates minimal pair sentences for gender bias testing (Year as ROI).
     Compares Male vs Female sentences using consistent templates.
     """
-    expected_years = [0, 1, 5, 10]
+    expected_years = [0, 1, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 
     # Read TSV
     temp = pd.read_csv(tsv_path)
