@@ -1,8 +1,8 @@
 import os
 import pandas as pd
 
-# data/origin.tsv `AGE_GROUP` column's unique values
-AGE_GROUPS = ["22-30", "61-70", "31-40", "18-21", "41-50", "15-17", "51-60", "71+"]
+# Corrected AGE_GROUP order: youngest → oldest
+AGE_GROUPS = ["15-17", "18-21", "22-30", "31-40", "41-50", "51-60", "61-70", "71+"]
 
 
 def build_sentence_year_last_age(
@@ -32,7 +32,7 @@ def create_age_minimal_pairs_year(
     """
     Creates minimal pair sentences for age-group bias testing
     where YEAR is the ROI (last token).
-    All unordered pairs of AGE_GROUPS are generated.
+    Always ensures the younger group comes first in the pair.
     """
     expected_years = [0, 1, 5, 10]
 
@@ -44,10 +44,10 @@ def create_age_minimal_pairs_year(
     records = []
     sentid_counter = 0
     pairid_counter = 0
-    x=-1
-    for offense in offense_list:
-        x+=1
+
+    for x, offense in enumerate(offense_list):
         for expected_year in expected_years:
+            # Loop over all ordered pairs (younger first)
             for i, age_a in enumerate(AGE_GROUPS):
                 for age_b in AGE_GROUPS[i + 1 :]:
                     expected_sentence_list = build_sentence_year_last_age(
