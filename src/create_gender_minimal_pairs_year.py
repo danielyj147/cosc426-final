@@ -31,7 +31,7 @@ def build_sentence_year_last(gender: str, offense: str, years_for_sentence: floa
 
 
 def create_gender_minimal_pairs_year(
-    tsv_path, output_path: str = "../data/gender_minimal_pairs_new_year.tsv"
+    tsv_path, output_path: str = "../data/gender_minimal_pairs_year.tsv"
 ):
     """
     Creates minimal pair sentences for gender bias testing (Year as ROI).
