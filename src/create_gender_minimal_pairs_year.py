@@ -55,10 +55,10 @@ def create_gender_minimal_pairs_year(
 
             # Male vs Female pair
             expected_sentence_list = build_sentence_year_last(
-                "Male", offense, expected_year
+                "Female", offense, expected_year
             )
             unexpected_sentence_list = build_sentence_year_last(
-                "Female", offense, expected_year
+                "Male", offense, expected_year
             )
 
             for i in range(len(expected_sentence_list)):
@@ -75,7 +75,7 @@ def create_gender_minimal_pairs_year(
                             "pairid": pairid_counter,
                             "comparison": comparison,
                             "sentence": sentence,
-                            "gender": "Male vs Female",
+                            "gender": "Female vs Male",
                             "years": expected_year,
                             "ROI": len(sentence.split()) - 1,
                             "template_id": i + 1,
