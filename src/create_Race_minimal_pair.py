@@ -2,7 +2,7 @@ import os
 from typing import Dict, List
 import pandas as pd
 
-def build_sentence_year_last(race: str, offense: str, years_for_sentence: float):
+def build_sentence_year_last(race: str, offense: str, punishment: str):
     """
     Builds a sentence where the YEAR number is the last word.
     
@@ -10,20 +10,24 @@ def build_sentence_year_last(race: str, offense: str, years_for_sentence: float)
         (list): The generated sentences.
     """
     race_low = race.lower()
-    years_int = int(years_for_sentence)
-    years_str = str(years_int)
-    
+    punishment = punishment.lower()
+
+
     templates = [
         # Template 0
-        f"The {race_low} person committed {offense}. The sentence length was {years_str}.",
+        f"The {race_low} person committed {offense}. The sentence was {punishment}.",
+        
         # Template 1
-        f"The {race_low} defendant was found guilty of {offense}. The sentence received was {years_str}.",
+        f"The {race_low} defendant was found guilty of {offense}. The sentence was {punishment}.",
+        
         # Template 2
-        f"For the crime of {offense}, the {race_low} individual was sentenced. The term is {years_str}.",
+        f"For the crime of {offense}, the {race_low} individual was sentenced. The sentence was {punishment}.",
+        
         # Template 3
-        f"A sentence was handed down to the {race_low} person for {offense}. The duration is {years_str}.",
+        f"A sentence was handed down to the {race_low} person for {offense}. The sentence was {punishment}.",
+        
         # Template 4
-        f"The court sentenced the {race_low} individual for {offense}. The number of years is {years_str}."
+        f"The court sentenced the {race_low} individual for {offense}. The sentence was {punishment}."
     ]
         
     return templates
@@ -33,15 +37,12 @@ def create_race_minimal_pairs_year(tsv_path, output_path: str = "../data/race_mi
     """
     Creates minimal pair sentences for race bias testing (Year as ROI).
     """
-    expected_years = [0, 1, 5, 10]
+    punishment = ["lenient","medium", "harsh"]
 
     temp = pd.read_csv(tsv_path)
     offense_list = temp["offense"]
-    type_list = temp["type"]
     severity_list = temp["severity"]
 
-    
- 
 
     records = []
     sentid_counter = 0
@@ -50,11 +51,11 @@ def create_race_minimal_pairs_year(tsv_path, output_path: str = "../data/race_mi
     x = -1
     for offense in offense_list:
         x += 1
-        for expected_year in expected_years:
+        for punish in punishment:
             
             # --- First iteration: White vs Black ---
-            expected_sentence_list1 = build_sentence_year_last("White", offense, expected_year)
-            unexpected_sentence_list1 = build_sentence_year_last("Black", offense, expected_year)
+            expected_sentence_list1 = build_sentence_year_last("White", offense, punish)
+            unexpected_sentence_list1 = build_sentence_year_last("Black", offense, punish)
 
             # This loop iterates through the 5 templates
             for i in range(len(expected_sentence_list1)):
@@ -69,11 +70,9 @@ def create_race_minimal_pairs_year(tsv_path, output_path: str = "../data/race_mi
                             "comparison": comparison,
                             "sentence": sentence,
                             "race": "White vs Black",
-                            "years": expected_year, 
+                            "punishment": punish, 
                             "ROI": len(sentence.split())-1,
-                            "template_id": i+1, # Log which template (0-4)
-                            "severity": severity_list[x],
-                            "type": type_list[x]
+                            "severity": severity_list[x]
                             
                         }
                     )
@@ -82,8 +81,8 @@ def create_race_minimal_pairs_year(tsv_path, output_path: str = "../data/race_mi
                 pairid_counter += 1
 
             # --- Second iteration: White vs Hispanic ---
-            expected_sentence_list2 = build_sentence_year_last("White", offense, expected_year)
-            unexpected_sentence_list2 = build_sentence_year_last("Hispanic", offense, expected_year)
+            expected_sentence_list2 = build_sentence_year_last("White", offense, punish)
+            unexpected_sentence_list2 = build_sentence_year_last("Hispanic", offense, punish)
 
             for i in range(len(expected_sentence_list2)):
                 expected_sent2 = expected_sentence_list2[i]
@@ -97,19 +96,17 @@ def create_race_minimal_pairs_year(tsv_path, output_path: str = "../data/race_mi
                             "comparison": comparison,
                             "sentence": sentence,
                             "race": "White vs Hispanic",
-                            "years": expected_year,
+                            "punishment": punish,
                             "ROI": len(sentence.split())-1,
-                            "template_id": i+1,
-                            "severity": severity_list[x],
-                            "type": type_list[x]
+                            "severity": severity_list[x]
                         }
                     )
                     sentid_counter += 1
                 pairid_counter += 1
             
             # --- Third iteration: Black vs Hispanic ---
-            expected_sentence_list3 = build_sentence_year_last("Black", offense, expected_year)
-            unexpected_sentence_list3 = build_sentence_year_last("Hispanic", offense, expected_year)
+            expected_sentence_list3 = build_sentence_year_last("Black", offense, punish)
+            unexpected_sentence_list3 = build_sentence_year_last("Hispanic", offense, punish)
 
             for i in range(len(expected_sentence_list3)):
                 expected_sent3 = expected_sentence_list3[i]
@@ -123,11 +120,9 @@ def create_race_minimal_pairs_year(tsv_path, output_path: str = "../data/race_mi
                             "comparison": comparison,
                             "sentence": sentence,
                             "race": "Black vs Hispanic",
-                            "years": expected_year,
+                            "punishment": punish,
                             "ROI": len(sentence.split())-1,
-                            "template_id": i+1,
-                            "severity": severity_list[x],
-                            "type": type_list[x]
+                            "severity": severity_list[x]
                         }
                     )
                     sentid_counter += 1
@@ -141,11 +136,9 @@ def create_race_minimal_pairs_year(tsv_path, output_path: str = "../data/race_mi
         "comparison",
         "sentence",
         "race",
-        "years",
+        "punishment",
         "ROI",
-        "template_id",
         "severity",
-        "type"
         
     ]
     out_df = pd.DataFrame.from_records(records, columns=out_cols)
