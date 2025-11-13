@@ -35,17 +35,18 @@ def build_sentence_year_last(race: str, offense: str, punishment: str):
     return templates
 
 
-def create_race_minimal_pairs_year(temp, output_path: str = "../data/race_minimal_pairs_new_year.tsv"):
+def create_race_minimal_pairs_year(tsv_path, output_path: str = "../data/race_minimal_pairs_new_year.tsv"):
     """
     Creates minimal pair sentences for race bias testing (Year as ROI).
     """
-    # Linneitn, standard, punishment
     punishment = ["2","7", "15"]
     
 
-    # temp = pd.read_csv(tsv_path)
+    temp = pd.read_csv(tsv_path)
     offense_list = temp["offense"]
     severity_list = temp["severity"]
+
+
 
 
     records = []
