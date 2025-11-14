@@ -5,22 +5,22 @@ mode:
   - analyze
 
 models:
+    hf_causal_model:
+      - gpt2
     hf_masked_model:
       - distilbert-base-uncased
-      - FacebookAI/roberta-base
 
+# predfpath: ../cosc426-final/predictions/race_prediction_new_year.tsv
 
-predfpath: ../cosc426-final/predictions/race_prediction_new_year.tsv
+# datafpath: ../cosc426-final/data/race_minimal_pairs_new_year.tsv
 
-datafpath: ../cosc426-final/data/race_minimal_pairs_new_year.tsv
+# resultsfpath: ../cosc426-final/results/race_results_new_year.tsv
 
-resultsfpath: ../cosc426-final/results/race_results_new_year.tsv
+predfpath: ../NLPProject1/cosc426-final/predictions/race_prediction_new_year.tsv
 
-# predfpath: ../NLPProject1/cosc426-final/predictions/race_prediction_new_year.tsv
+datafpath: ../NLPProject1/cosc426-final/data/race_minimal_pairs_new_year.tsv
 
-# datafpath: ../NLPProject1/cosc426-final/data/race_minimal_pairs_new_year.tsv
-
-# resultsfpath: ../NLPProject1/cosc426-final/results/race_results_new_year.tsv
+resultsfpath: ../NLPProject1/cosc426-final/results/court_model.tsv
 
 pred_measure: prob
 
