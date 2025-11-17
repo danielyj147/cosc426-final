@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 # Corrected AGE_GROUP order: youngest → oldest
-AGE_GROUPS = ["Young Adults", "Middle-Aged Adults", "Old Adults"]
+AGE_GROUPS = ["young adult", "middle-aged adult", "older adult"]
 
 
 def build_sentence_year_last_age(
@@ -16,11 +16,11 @@ def build_sentence_year_last_age(
     years_str = str(years_int)
 
     templates = [
-        f"A person aged {age_group} committed {offense}. The sentence length in years is {years_str}.",
-        f"The defendant aged {age_group} was found guilty of {offense}. The prison term in years is {years_str}.",
-        f"For the crime of {offense}, the individual aged {age_group} was sentenced. The term in years is {years_str}.",
-        f"A sentence was handed down to the person aged {age_group} for {offense}. The duration in years is {years_str}.",
-        f"The court sentenced the individual aged {age_group} for {offense}. The number of years is {years_str}.",
+        f"A {age_group} committed {offense}. The sentence length in years is {years_str}.",
+        f"The {age_group} was found guilty of {offense}. The prison term in years is {years_str}.",
+        f"For the crime of {offense}, the {age_group} was sentenced. The term in years is {years_str}.",
+        f"A sentence was handed down to the {age_group} for {offense}. The duration in years is {years_str}.",
+        f"The court sentenced the {age_group} for {offense}. The number of years is {years_str}.",
     ]
 
     return templates
