@@ -6,7 +6,9 @@ mode:
 
 models:
   hf_causal_model:
-    - distilbert/distilgpt2
+    - gpt2
+  hf_masked_model:
+    - distilbert-base-uncased
 
 predfpath: ../cosc426-final/predictions/age_prediction_year.tsv
 
