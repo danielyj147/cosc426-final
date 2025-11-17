@@ -5,8 +5,6 @@ mode:
   - analyze
 
 models:
-  hf_causal_model:
-    - gpt2
   hf_masked_model:
     - distilbert-base-uncased
 

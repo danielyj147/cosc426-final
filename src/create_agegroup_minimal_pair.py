@@ -31,10 +31,8 @@ def create_age_minimal_pairs_year(
 ):
     """
     Creates minimal pair sentences for age-group bias testing
-    where YEAR is the ROI (last token).
-
-    Each pairid still corresponds to two sentences with identical context
-    except for the age group, but the condition is now the age group itself.
+    with YEAR as the ROI.
+    Condition is now the *index* of the age group.
     """
     expected_years = [2, 7, 15]
 
@@ -48,9 +46,11 @@ def create_age_minimal_pairs_year(
 
     for x, offense in enumerate(offense_list):
         for expected_year in expected_years:
-            # Loop over all ordered pairs (younger first)
+
+            # Loop over all ordered age pairs
             for i, age_a in enumerate(AGE_GROUPS):
                 for age_b in AGE_GROUPS[i + 1 :]:
+
                     sentences_age_a = build_sentence_year_last_age(
                         age_a, offense, expected_year
                     )
@@ -62,18 +62,18 @@ def create_age_minimal_pairs_year(
                         sent_a = sentences_age_a[template_idx]
                         sent_b = sentences_age_b[template_idx]
 
-                        # condition/comparison is now the age group itself
+                        # condition is now the index (0,1,2)
                         for condition, sentence, age_val in (
-                            (age_a, sent_a, age_a),
-                            (age_b, sent_b, age_b),
+                            (AGE_GROUPS.index(age_a), sent_a, age_a),
+                            (AGE_GROUPS.index(age_b), sent_b, age_b),
                         ):
                             records.append(
                                 {
                                     "sentid": sentid_counter,
                                     "pairid": pairid_counter,
-                                    "condition": condition,  # CHANGED: age group as condition
+                                    "condition": condition,  # now an integer index
                                     "sentence": sentence,
-                                    "age_group": age_val,  # single group (no "vs.")
+                                    "age_group": age_val,
                                     "years": expected_year,
                                     "ROI": len(sentence.split()) - 1,
                                     "template_id": template_idx + 1,
@@ -87,9 +87,9 @@ def create_age_minimal_pairs_year(
     out_cols = [
         "sentid",
         "pairid",
-        "condition",  # CHANGED: was "comparison"
+        "condition",
         "sentence",
-        "age_group",  # single group only
+        "age_group",
         "years",
         "ROI",
         "template_id",
