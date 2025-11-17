@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 # Corrected AGE_GROUP order: youngest → oldest
-AGE_GROUPS = ["15-17", "18-21", "22-30", "31-40", "41-50", "51-60", "61-70", "71+"]
+AGE_GROUPS = ["Young Adults", "Middle-Aged Adults", "Old Adults"]
 
 
 def build_sentence_year_last_age(
@@ -34,11 +34,11 @@ def create_age_minimal_pairs_year(
     where YEAR is the ROI (last token).
     Always ensures the younger group comes first in the pair.
     """
-    expected_years = [0, 1, 5, 10]
+    expected_years = [2, 7, 15]
 
     temp = pd.read_csv(tsv_path)
     offense_list = temp["offense"]
-    type_list = temp["type"]
+    # type_list = temp["type"]
     severity_list = temp["severity"]
 
     records = []
@@ -76,7 +76,7 @@ def create_age_minimal_pairs_year(
                                     "years": expected_year,
                                     "ROI": len(sentence.split()) - 1,
                                     "template_id": template_idx + 1,
-                                    "type": type_list[x],
+                                    # "type": type_list[x],
                                     "severity": severity_list[x],
                                 }
                             )
@@ -94,7 +94,7 @@ def create_age_minimal_pairs_year(
         "years",
         "ROI",
         "template_id",
-        "type",
+        # "type",
         "severity",
     ]
 
