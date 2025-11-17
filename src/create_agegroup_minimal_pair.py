@@ -27,7 +27,7 @@ def build_sentence_year_last_age(
 
 
 def create_age_minimal_pairs_year(
-    tsv_path: str, output_path: str = "../data/age_minimal_pairs_year.tsv"
+    tsv_path: str, output_path: str = "../data/age_minimal_pairs_year_int.tsv"
 ):
     """
     Creates minimal pair sentences for age-group bias testing
@@ -70,7 +70,7 @@ def create_age_minimal_pairs_year(
                         {
                             "sentid": sentid_counter,
                             "pairid": pairid_counter,
-                            "condition": age_idx,  # 0, 1, 2
+                            "comparison": age_idx,  # 0, 1, 2
                             "sentence": sentence,
                             "age_group": age_group,  # "young adult", etc.
                             "years": expected_year,
@@ -87,7 +87,7 @@ def create_age_minimal_pairs_year(
     out_cols = [
         "sentid",
         "pairid",
-        "condition",
+        "comparison",
         "sentence",
         "age_group",
         "years",

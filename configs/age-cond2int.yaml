@@ -1,0 +1,25 @@
+exp: MinimalPair
+
+mode:
+  - evaluate
+  - analyze
+
+models:
+  hf_masked_model:
+    - distilbert-base-uncased
+
+predfpath: ../cosc426-final/predictions/age_prediction_year_int.tsv
+
+datafpath: ../cosc426-final/data/age_minimal_pairs_year_int.tsv
+
+resultsfpath: ../cosc426-final/results/age_results_year_int.tsv
+
+pred_measure: prob
+
+conditions: age_group, years, severity, template_id
+
+save: by_cond
+
+punctuation: previous
+
+device: cuda
