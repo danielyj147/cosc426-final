@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 # Corrected AGE_GROUP order: youngest → oldest
-AGE_GROUPS = ["Young Adults", "Middle-Aged Adults", "Old Adults"]
+AGE_GROUPS = ["young adult", "middle-aged adult", "older adult"]
 
 
 def build_sentence_year_last_age(
@@ -16,11 +16,11 @@ def build_sentence_year_last_age(
     years_str = str(years_int)
 
     templates = [
-        f"A person aged {age_group} committed {offense}. The sentence length in years is {years_str}.",
-        f"The defendant aged {age_group} was found guilty of {offense}. The prison term in years is {years_str}.",
-        f"For the crime of {offense}, the individual aged {age_group} was sentenced. The term in years is {years_str}.",
-        f"A sentence was handed down to the person aged {age_group} for {offense}. The duration in years is {years_str}.",
-        f"The court sentenced the individual aged {age_group} for {offense}. The number of years is {years_str}.",
+        f"A {age_group} committed {offense}. The sentence length in years is {years_str}.",
+        f"The {age_group} was found guilty of {offense}. The prison term in years is {years_str}.",
+        f"For the crime of {offense}, the {age_group} was sentenced. The term in years is {years_str}.",
+        f"A sentence was handed down to the {age_group} for {offense}. The duration in years is {years_str}.",
+        f"The court sentenced the {age_group} for {offense}. The number of years is {years_str}.",
     ]
 
     return templates
@@ -32,13 +32,14 @@ def create_age_minimal_pairs_year(
     """
     Creates minimal pair sentences for age-group bias testing
     where YEAR is the ROI (last token).
-    Always ensures the younger group comes first in the pair.
+
+    Each pairid still corresponds to two sentences with identical context
+    except for the age group, but the condition is now the age group itself.
     """
     expected_years = [2, 7, 15]
 
     temp = pd.read_csv(tsv_path)
     offense_list = temp["offense"]
-    # type_list = temp["type"]
     severity_list = temp["severity"]
 
     records = []
@@ -50,33 +51,32 @@ def create_age_minimal_pairs_year(
             # Loop over all ordered pairs (younger first)
             for i, age_a in enumerate(AGE_GROUPS):
                 for age_b in AGE_GROUPS[i + 1 :]:
-                    expected_sentence_list = build_sentence_year_last_age(
+                    sentences_age_a = build_sentence_year_last_age(
                         age_a, offense, expected_year
                     )
-                    unexpected_sentence_list = build_sentence_year_last_age(
+                    sentences_age_b = build_sentence_year_last_age(
                         age_b, offense, expected_year
                     )
 
-                    for template_idx in range(len(expected_sentence_list)):
-                        expected_sent = expected_sentence_list[template_idx]
-                        unexpected_sent = unexpected_sentence_list[template_idx]
+                    for template_idx in range(len(sentences_age_a)):
+                        sent_a = sentences_age_a[template_idx]
+                        sent_b = sentences_age_b[template_idx]
 
-                        for comparison, sentence, age_val in (
-                            ("expected", expected_sent, age_a),
-                            ("unexpected", unexpected_sent, age_b),
+                        # condition/comparison is now the age group itself
+                        for condition, sentence, age_val in (
+                            (age_a, sent_a, age_a),
+                            (age_b, sent_b, age_b),
                         ):
                             records.append(
                                 {
                                     "sentid": sentid_counter,
                                     "pairid": pairid_counter,
-                                    "comparison": comparison,
+                                    "condition": condition,  # CHANGED: age group as condition
                                     "sentence": sentence,
-                                    "age_pair": f"{age_a} vs {age_b}",
-                                    "age_group": age_val,
+                                    "age_group": age_val,  # single group (no "vs.")
                                     "years": expected_year,
                                     "ROI": len(sentence.split()) - 1,
                                     "template_id": template_idx + 1,
-                                    # "type": type_list[x],
                                     "severity": severity_list[x],
                                 }
                             )
@@ -87,14 +87,12 @@ def create_age_minimal_pairs_year(
     out_cols = [
         "sentid",
         "pairid",
-        "comparison",
+        "condition",  # CHANGED: was "comparison"
         "sentence",
-        "age_pair",
-        "age_group",
+        "age_group",  # single group only
         "years",
         "ROI",
         "template_id",
-        # "type",
         "severity",
     ]
 
