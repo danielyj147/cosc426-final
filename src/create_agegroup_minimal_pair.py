@@ -31,8 +31,12 @@ def create_age_minimal_pairs_year(
 ):
     """
     Creates minimal pair sentences for age-group bias testing
-    with YEAR as the ROI.
-    Condition is now the *index* of the age group.
+    where YEAR is the ROI (last token).
+
+    Each pairid corresponds to THREE sentences:
+    one for each age group (young, middle-aged, older),
+    with the same offense, year, and template, differing only by age.
+    - 'condition' is the index of the age group in AGE_GROUPS.
     """
     expected_years = [2, 7, 15]
 
@@ -46,43 +50,39 @@ def create_age_minimal_pairs_year(
 
     for x, offense in enumerate(offense_list):
         for expected_year in expected_years:
+            # Precompute templates for each age group for this offense/year
+            age_templates = []
+            for age_idx, age_group in enumerate(AGE_GROUPS):
+                templates = build_sentence_year_last_age(
+                    age_group, offense, expected_year
+                )
+                age_templates.append((age_idx, age_group, templates))
 
-            # Loop over all ordered age pairs
-            for i, age_a in enumerate(AGE_GROUPS):
-                for age_b in AGE_GROUPS[i + 1 :]:
+            # Assume all age groups have the same number of templates
+            num_templates = len(age_templates[0][2])
 
-                    sentences_age_a = build_sentence_year_last_age(
-                        age_a, offense, expected_year
+            # For each template, create a pair containing all 3 age groups
+            for template_idx in range(num_templates):
+                for age_idx, age_group, templates in age_templates:
+                    sentence = templates[template_idx]
+
+                    records.append(
+                        {
+                            "sentid": sentid_counter,
+                            "pairid": pairid_counter,
+                            "condition": age_idx,  # 0, 1, 2
+                            "sentence": sentence,
+                            "age_group": age_group,  # "young adult", etc.
+                            "years": expected_year,
+                            "ROI": len(sentence.split()) - 1,
+                            "template_id": template_idx + 1,
+                            "severity": severity_list[x],
+                        }
                     )
-                    sentences_age_b = build_sentence_year_last_age(
-                        age_b, offense, expected_year
-                    )
+                    sentid_counter += 1
 
-                    for template_idx in range(len(sentences_age_a)):
-                        sent_a = sentences_age_a[template_idx]
-                        sent_b = sentences_age_b[template_idx]
-
-                        # condition is now the index (0,1,2)
-                        for condition, sentence, age_val in (
-                            (AGE_GROUPS.index(age_a), sent_a, age_a),
-                            (AGE_GROUPS.index(age_b), sent_b, age_b),
-                        ):
-                            records.append(
-                                {
-                                    "sentid": sentid_counter,
-                                    "pairid": pairid_counter,
-                                    "condition": condition,  # now an integer index
-                                    "sentence": sentence,
-                                    "age_group": age_val,
-                                    "years": expected_year,
-                                    "ROI": len(sentence.split()) - 1,
-                                    "template_id": template_idx + 1,
-                                    "severity": severity_list[x],
-                                }
-                            )
-                            sentid_counter += 1
-
-                        pairid_counter += 1
+                # after all 3 age groups for this template/offense/year
+                pairid_counter += 1
 
     out_cols = [
         "sentid",
