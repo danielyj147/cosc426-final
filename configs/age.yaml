@@ -7,7 +7,7 @@ mode:
 models:
   hf_causal_model:
     - gpt2
-    - SmolLM2-135M
+    - HuggingFaceTB/SmolLM2-135M
   hf_masked_model:
     - distilbert-base-uncased
     - distilroberta-base
