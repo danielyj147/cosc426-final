@@ -34,7 +34,7 @@ def create_age_minimal_pairs_year(
     where YEAR is the ROI (last token).
     Always ensures the younger group comes first in the pair.
     """
-    expected_years = [2, 7, 15]
+    expected_years = [0, 2, 7, 15, 100]
 
     temp = pd.read_csv(tsv_path)
     offense_list = temp["offense"]

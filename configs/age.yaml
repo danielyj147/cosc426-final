@@ -7,8 +7,10 @@ mode:
 models:
   hf_causal_model:
     - gpt2
+    - SmolLM2-135M
   hf_masked_model:
     - distilbert-base-uncased
+    - distilroberta-base
 
 predfpath: ../cosc426-final/predictions/age_prediction_year.tsv
 
