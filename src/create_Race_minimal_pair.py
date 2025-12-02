@@ -39,15 +39,12 @@ def create_race_minimal_pairs_year(tsv_path, output_path: str = "../data/race_mi
     """
     Creates minimal pair sentences for race bias testing (Year as ROI).
     """
-    punishment = ["2","7", "15"]
+    punishment = ["0", "2", "7", "15", "100"]
     
 
     temp = pd.read_csv(tsv_path)
     offense_list = temp["offense"]
     severity_list = temp["severity"]
-
-
-
 
     records = []
     sentid_counter = 0
