@@ -1,0 +1,29 @@
+exp: MinimalPair
+
+mode:
+  - evaluate
+  - analyze
+
+models:
+  hf_causal_model:
+    - gpt2
+    - HuggingFaceTB/SmolLM2-135M #new models to analyze
+  hf_masked_model:
+    - distilbert-base-uncased
+    - distilbert/distilroberta-base #new models to analyze
+
+predfpath: ../cosc426-final/predictions/new_m4_gender_prediction_year.tsv
+
+datafpath: ../cosc426-final/data/new_gender_minimal_pairs_year.tsv
+
+resultsfpath: ../cosc426-final/results/new_m4_gender_results_year.tsv
+
+pred_measure: prob
+
+conditions: years, severity,
+
+save: by_cond
+
+punctuation: previous
+
+device: cuda
